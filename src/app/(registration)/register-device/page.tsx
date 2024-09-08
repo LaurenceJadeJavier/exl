@@ -38,8 +38,9 @@ export default function RegisterDevice() {
   });
   const handleSubmitValue = (data: any) => {
     setFormDataItems(data);
+    router.push("/registered-qr");
   };
-  console.log(formdataItems, "items");
+  // console.log(formdataItems, "items");
   return (
     <>
       <div className="border border-red-200 bg-[#FFFFFF] rounded-3xl w-[60rem] min-h-[30rem]">

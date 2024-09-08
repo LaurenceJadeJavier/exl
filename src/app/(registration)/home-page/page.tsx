@@ -11,9 +11,9 @@ export default function Home() {
         <div className="flex flex-col items-center text-center justify-center pt-6 space-y-4">
           <Image src={exlLogo} alt="logo" width={80} />
           <div>
-            <text className="flex flex-col text-2xl font-bold">
+            <h1 className="flex flex-col text-2xl font-bold">
               Welcome To Facilities <span>Service Request Page</span>
-            </text>
+            </h1>
           </div>
           <div className="w-full px-auto">
             <Link href={"/register-employee"}>

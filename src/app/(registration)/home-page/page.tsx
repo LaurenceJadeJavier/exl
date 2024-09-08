@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <div className="w-[34rem] h-[14rem] border border-red-200 bg-[#FFFFFF] rounded-3xl">
+      <div className="w-[34rem] h-[14rem] bg-[#FFFFFF] rounded-3xl">
         <div className="flex flex-col items-center text-center justify-center pt-6 space-y-4">
           <Image src={exlLogo} alt="logo" width={80} />
           <div>

@@ -1,49 +1,40 @@
 import { create } from "zustand";
 
-interface RegistrationState {
-  employeeId: string;
-  name: string;
-  facilityName: string;
-  number: string;
-  email: string;
-  deviceName: string;
-  deviceDescription: string;
-  setEmployeeId: (employeeId: string) => void;
-  setName: (name: string) => void;
-  setFacilityName: (facilityName: string) => void;
-  setNumber: (number: string) => void;
-  setEmail: (email: string) => void;
-  setDeviceName: (deviceName: string) => void;
-  setDeviceDescription: (deviceDescription: string) => void;
-  reset: () => void;
+import { z } from "zod";
+import {
+  useRegisterDeviceScheme,
+  useRegistraterEmployeeSchema,
+} from "@/utils/schema/useRegisterEmployee";
+
+type RegisterDevice = z.infer<typeof useRegisterDeviceScheme>;
+type useRegisterEmployee = z.infer<typeof useRegistraterEmployeeSchema>;
+
+export type Forms = RegisterDevice & useRegisterEmployee;
+
+interface FormState {
+  formdataItems: Forms;
+  setFormDataItems: (value: Forms) => void;
 }
 
-export const useRegistrationStore = create<RegistrationState>((set) => ({
-  employeeId: "",
-  name: "",
-  facilityName: "",
-  number: "",
-  email: "",
-  deviceName: "",
-  deviceDescription: "",
-
-  setEmployeeId: (employeeId) => set({ employeeId }),
-  setName: (name) => set({ name }),
-  setFacilityName: (facilityName) => set({ facilityName }),
-  setNumber: (number) => set({ number }),
-  setEmail: (email) => set({ email }),
-  setDeviceName: (deviceName) => set({ deviceName }),
-  setDeviceDescription: (deviceDescription) => set({ deviceDescription }),
-
-  // Function to reset all fields
-  reset: () =>
-    set({
-      employeeId: "",
-      name: "",
-      facilityName: "",
-      number: "",
-      email: "",
-      deviceName: "",
-      deviceDescription: "",
-    }),
+const useFormStore = create<FormState>((set) => ({
+  formdataItems: {
+    number: "",
+    email: "",
+    employeeId: "",
+    name: "",
+    facilityName: "",
+    deviceDescription: "",
+    deviceName: "",
+  },
+  // setFormDataItems: (value) => set({ formdataItems: value }),
+  setFormDataItems: (newState: Forms) =>
+    set((oldState) => ({
+      ...oldState,
+      formdataItems: {
+        ...oldState.formdataItems,
+        ...newState,
+      },
+    })),
 }));
+
+export default useFormStore;

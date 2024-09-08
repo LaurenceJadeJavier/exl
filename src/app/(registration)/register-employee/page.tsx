@@ -16,10 +16,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import useFormStore from "@/utils/zustand/registration/useRegistrationStore";
 
 type formValues = z.infer<typeof useRegistraterEmployeeSchema>;
 
 export default function RegisterEmployee() {
+  const router = useRouter();
+  const setFormDataItems = useFormStore((state) => state.setFormDataItems);
+
   const form = useForm<formValues>({
     defaultValues: {
       email: "",
@@ -30,17 +35,20 @@ export default function RegisterEmployee() {
     },
     resolver: zodResolver(useRegistraterEmployeeSchema),
   });
-  const handleSubmitValue = (data: formValues) => {
-    console.log(data);
+  const handleSubmitValue = (values: any) => {
+    setFormDataItems(values);
+    console.log(values, "register device");
+
+    router.push("/register-device");
   };
   return (
     <>
-      <div className=" border border-red-200 bg-[#FFFFFF] rounded-3xl">
-        <div className="flex flex-col items-center text-center justify-center pt-6 space-y-4">
+      <div className="border border-red-200 bg-[#FFFFFF] rounded-3xl w-[60rem] min-h-[30rem]">
+        <div className="flex flex-col items-center text-center justify-center pt-6 space-y-2 h-auto">
           <Image src={exlLogo} alt="logo" width={80} />
-          <div className=" flex flex-row">
-            <div className=" flex flex-col">
-              <text>Register Device</text>
+          <div className=" flex flex-row gap-6 w-full">
+            <div className=" flex flex-col  w-full text-left px-4 py-4  ">
+              <span className="font-bold text-2xl">Register Employee</span>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmitValue)}>
                   <FormField
@@ -133,13 +141,15 @@ export default function RegisterEmployee() {
                       </FormItem>
                     )}
                   />
-                  <div>
-                    <Button variant={"outline"}>Submit</Button>
+                  <div className="w-full p-auto mt-4">
+                    <Button className="w-full" variant={"default"}>
+                      Next
+                    </Button>
                   </div>
                 </form>
               </Form>
             </div>
-            <div>
+            <div className="w-full m-auto ">
               <Image
                 src={registerEmployeeImage}
                 alt="registerEmployees"

@@ -84,14 +84,14 @@ export function DataTable<TData, TValue>({
   return (
     <>
       <div className={cn("space-y-2", wrapperClassName)}>
-        <div className=" border border-t-0 rounded-b-md">
+        <div className=" ">
           {loading && (
             <div className="absolute top-0 left-0 bg-green h-full w-full z-50 bg-white bg-opacity-90 text-black font-semibold text-xl flex justify-center items-center">
               Please Wait...
             </div>
           )}
           {(showHeader || buttonIshow) && (
-            <div className="flex flex-row justify-between py-4 border border-b-0 rounded-t-xl overflow-auto">
+            <div className="flex flex-row justify-between py-4  overflow-auto">
               <div className="text-xl font-bold">
                 <h1 className="px-4 py-3">{headerTitle}</h1>
               </div>
@@ -111,6 +111,7 @@ export function DataTable<TData, TValue>({
                     >
                       {buttonName}
                     </Button>
+                    <Button></Button>
                   </>
                 )}
               </div>

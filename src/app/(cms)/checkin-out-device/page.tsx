@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import avail from "@assets/images/occupied.png";
 import occu from "@assets/images/avail2.png";
+import { FaCaretDown } from "react-icons/fa";
 
 export default function CheckInOutDevice() {
   const column: ColumnDef<any>[] = [
@@ -101,21 +102,37 @@ export default function CheckInOutDevice() {
     <>
       <div className="grid grid-cols-2  min h-screen   ">
         <div className="w-full  min h-screen border border-l-1 px-6 pt-14">
+          <div>
+            <div className="ml-2">
+              <h1 className="py-2">
+                Facility :<span className="font-bold">Facility 1</span>
+              </h1>
+            </div>
+            <h1 className="py-1">
+              Date : <span className="font-bold">July 16, 2024</span>
+            </h1>
+          </div>
           <DataTable
             columns={column}
             data={data}
             displayPagination
             headerClassName="bg-[#E30613]"
-            rowClassName="text-xs  "
+            rowClassName="text-xs"
           />
         </div>
-        <div className="w-full px-6 pt-14 ">
+        <div className="w-full px-6 pt-14  ">
           <div>
-            <div className=" flex flex-row justify-between pb-5">
+            <div className=" flex flex-row justify-between pb-5 pr-12">
               <h1 className="font-bold">LOCKERS</h1>
               <div className="flex flex-row gap-4 text-xs">
-                <h1>Occupied</h1>
-                <h1>Available</h1>
+                <h1 className="flex flex-row items-center gap-2">
+                  <span className="w-2 h-2 bg-[#C0C0C0] rounded-full"></span>
+                  Occupied
+                </h1>
+                <h1 className="flex flex-row items-center gap-2">
+                  <span className="w-2 h-2 bg-[#E30613] rounded-full"></span>
+                  Available
+                </h1>
               </div>
             </div>
             <div className="grid grid-cols-8 gap-4">

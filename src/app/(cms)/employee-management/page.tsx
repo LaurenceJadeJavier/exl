@@ -2,6 +2,7 @@
 
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
+import { useRouter } from "next/navigation";
 
 interface tableProps {
   employeeId: string;
@@ -11,6 +12,7 @@ interface tableProps {
 }
 
 export default function EmployeeManagement() {
+  const router = useRouter();
   const column: ColumnDef<tableProps>[] = [
     {
       accessorKey: "employeeId",
@@ -37,7 +39,6 @@ export default function EmployeeManagement() {
       },
     },
   ];
-
   const data = [
     {
       employeeId: "1234",
@@ -70,7 +71,9 @@ export default function EmployeeManagement() {
       emailAddress: "sophia.johnson@example.com",
     },
   ];
-
+  const handleNavigate = () => {
+    router.push("/employee-management/add-employee");
+  };
   return (
     <>
       <div className="flex  min h-screen">
@@ -84,6 +87,7 @@ export default function EmployeeManagement() {
             headerTitle="Employees Management"
             buttonIshow={true}
             firstButtonName="Add Employees"
+            firstButtonFunction={handleNavigate}
             secondButtonName="Filter by"
             thirdButtonName="Export"
           />

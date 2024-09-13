@@ -8,76 +8,85 @@ import avail from "@assets/images/occupied.png";
 import occu from "@assets/images/avail2.png";
 import { FaCaretDown } from "react-icons/fa";
 
+interface TableProps {
+  deviceName: string;
+  deviceModel: string;
+  employeeId: string;
+  employeeName: string;
+  dateAdded: string;
+}
+
 export default function CheckInOutDevice() {
-  const column: ColumnDef<any>[] = [
+  const column: ColumnDef<TableProps>[] = [
     {
-      accessorKey: "name",
+      accessorKey: "deviceName",
       header: () => {
-        return <h1 className="text-xs text-white">Name</h1>;
+        return <h1 className="text-xs text-white">Device Name</h1>;
       },
     },
     {
-      accessorKey: "date",
+      accessorKey: "deviceModel",
       header: () => {
-        return <h1 className="text-xs text-white">Date</h1>;
+        return <h1 className="text-xs text-white">Device Model</h1>;
       },
     },
     {
-      accessorKey: "timeIn",
+      accessorKey: "employeeId",
       header: () => {
-        return <h1 className="text-xs text-white">Time in</h1>;
+        return <h1 className="text-xs text-white">Employee ID</h1>;
       },
     },
     {
-      accessorKey: "timeOut",
+      accessorKey: "employeeName",
       header: () => {
-        return <h1 className="text-xs text-white">Time out</h1>;
+        return <h1 className="text-xs text-white">Employee Name</h1>;
       },
     },
     {
-      accessorKey: "lockerNo",
+      accessorKey: "dateAdded",
       header: () => {
-        return <h1 className="text-xs text-white">Locker #</h1>;
+        return <h1 className="text-xs text-white">Date Added</h1>;
       },
     },
   ];
   const data = [
     {
-      name: "Laurence",
-      date: "14 Aug 2024",
-      timeIn: "9:30 AM",
-      timeOut: "5:00 PM",
-      lockerNo: "01",
+      deviceName: "Laurence",
+      deviceModel: "14 Aug 2024",
+      employeeId: "9:30 AM",
+      employeeName: "5:00 PM",
+      dateAdded: "10 Aug 2024",
     },
     {
-      name: "Samantha",
-      date: "15 Aug 2024",
-      timeIn: "10:00 AM",
-      timeOut: "6:00 PM",
-      lockerNo: "02",
+      deviceName: "Sophia",
+      deviceModel: "Galaxy S21",
+      employeeId: "1234",
+      employeeName: "John Doe",
+      dateAdded: "15 Aug 2024",
     },
     {
-      name: "Michael",
-      date: "16 Aug 2024",
-      timeIn: "8:45 AM",
-      timeOut: "",
-      lockerNo: "03",
+      deviceName: "Elliot",
+      deviceModel: "iPhone 13",
+      employeeId: "5678",
+      employeeName: "Alice Smith",
+      dateAdded: "12 Aug 2024",
     },
     {
-      name: "Jessica",
-      date: "17 Aug 2024",
-      timeIn: "9:15 AM",
-      timeOut: "5:30 PM",
-      lockerNo: "04",
+      deviceName: "Mason",
+      deviceModel: "Pixel 6",
+      employeeId: "9876",
+      employeeName: "Robert Brown",
+      dateAdded: "10 Aug 2024",
     },
     {
-      name: "David",
-      date: "18 Aug 2024",
-      timeIn: "10:30 AM",
-      timeOut: "",
-      lockerNo: "05",
+      deviceName: "Olivia",
+      deviceModel: "OnePlus 9",
+      employeeId: "4321",
+      employeeName: "Emma Davis",
+      dateAdded: "20 Aug 2024",
     },
   ];
+
   //lockers
   let lockerNumber = 48;
 
@@ -100,18 +109,39 @@ export default function CheckInOutDevice() {
   };
   return (
     <>
-      <div className="grid grid-cols-2  min h-screen   ">
-        <div className="w-full  min h-screen border border-l-1 px-6 pt-14">
-          <div>
-            <div className="ml-2">
-              <h1 className="py-2">
-                Facility :<span className="font-bold">Facility 1</span>
+      <div className="flex flex-row  min h-screen   ">
+        <div className="w-[60%] min h-screen border border-l-1 px-6 pt-14">
+          <div className="flex justify-between items-center text-sm">
+            <div>
+              <div className="text-sm">
+                <h1 className="py-1">
+                  Facility: <span className="font-bold">Facility 1</span>
+                </h1>
+              </div>
+              <h1 className="py-1">
+                Date: <span className="font-bold">July 16, 2024</span>
               </h1>
             </div>
-            <h1 className="py-1">
-              Date : <span className="font-bold">July 16, 2024</span>
-            </h1>
+
+            <div className="flex space-x-2 ">
+              <Button className="bg-[#E30613] text-white rounded-lg px-4 py-2">
+                Scan Device
+              </Button>
+              <Button
+                className="border border-[#E30613] rounded-lg px-4 py-2"
+                variant="outline"
+              >
+                Filter Date
+              </Button>
+              <Button
+                className="border border-[#E30613] rounded-lg px-4 py-2"
+                variant="outline"
+              >
+                Export
+              </Button>
+            </div>
           </div>
+
           <DataTable
             columns={column}
             data={data}
@@ -120,7 +150,7 @@ export default function CheckInOutDevice() {
             rowClassName="text-xs"
           />
         </div>
-        <div className="w-full px-6 pt-14  ">
+        <div className="w-[40%] px-6 pt-14  ">
           <div>
             <div className=" flex flex-row justify-between pb-5 pr-12">
               <h1 className="font-bold">LOCKERS</h1>

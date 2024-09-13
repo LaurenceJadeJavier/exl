@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import exlLogo from "@assets/images/exlLogo.png";
 import qrRegister from "@assets/images/qrRegister.png";
@@ -17,7 +16,7 @@ export default function RegisteredQR() {
         <div className="flex flex-col items-center text-center justify-center pt-6 space-y-2 h-auto">
           <Image src={exlLogo} alt="logo" width={80} />
           <div className=" flex flex-row gap-6 w-full">
-            <div className=" flex flex-col  w-full text-left px-4 py-4  ">
+            <div className=" flex flex-col  w-full text-left px-4 py-4">
               <div className="flex flex-col items-center">
                 <h1 className="text-center font-semibold py-2 text-lg">
                   Here Is Your QR Code

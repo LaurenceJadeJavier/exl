@@ -37,8 +37,12 @@ interface DataTableProps<TData, TValue> {
   headerClassName?: string;
   wrapperClassName?: string;
   setPage?: React.Dispatch<React.SetStateAction<PaginationState>>;
-  openFormAction?: () => void;
-  buttonName?: string;
+  firstButtonFunction?: () => void;
+  secondButtonFunction?: () => void;
+  thirdButtonFunction?: () => void;
+  firstButtonName?: string;
+  secondButtonName?: string;
+  thirdButtonName?: string;
   buttonIshow?: boolean;
   showHeader?: boolean;
   headerTitle?: string;
@@ -54,8 +58,12 @@ export function DataTable<TData, TValue>({
   rowClassName,
   headerClassName,
   wrapperClassName,
-  openFormAction,
-  buttonName,
+  firstButtonName,
+  secondButtonName,
+  thirdButtonName,
+  firstButtonFunction,
+  secondButtonFunction,
+  thirdButtonFunction,
   buttonIshow,
   showHeader,
   headerTitle,
@@ -91,27 +99,28 @@ export function DataTable<TData, TValue>({
             </div>
           )}
           {(showHeader || buttonIshow) && (
-            <div className="flex flex-row justify-between py-4  overflow-auto">
+            <div className="flex flex-row justify-between py-1 items-center  overflow-auto">
               <div className="text-xl font-bold">
-                <h1 className="px-4 py-3">{headerTitle}</h1>
+                <h1 className="py-3">{headerTitle}</h1>
               </div>
               <div className="flex flex-row gap-2 px-4">
                 {buttonIshow && (
                   <>
-                    <Button
-                      variant={"outline"}
-                      className="border border-[#74E291]"
-                    >
-                      Filter by
+                    <Button className="bg-[#E30613] text-white rounded-lg px-4 py-2">
+                      {firstButtonName}
                     </Button>
                     <Button
-                      className="bg-[#74E291] text-[#272829]"
-                      variant={"outline"}
-                      onClick={openFormAction}
+                      className="border border-[#E30613] rounded-lg px-4 py-2"
+                      variant="outline"
                     >
-                      {buttonName}
+                      {secondButtonName}
                     </Button>
-                    <Button></Button>
+                    <Button
+                      className="border border-[#E30613] rounded-lg px-4 py-2"
+                      variant="outline"
+                    >
+                      {thirdButtonName}
+                    </Button>
                   </>
                 )}
               </div>

@@ -2,8 +2,10 @@
 
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
+import { useRouter } from "next/navigation";
 
 export default function AccountManagement() {
+  const router = useRouter();
   const column: ColumnDef<any>[] = [
     {
       accessorKey: "deviceName",
@@ -40,6 +42,9 @@ export default function AccountManagement() {
       dataCreated: "12, Aug 2024",
     },
   ];
+  const handleNavigate = () => {
+    router.push("/account-management/add-account");
+  };
   return (
     <>
       <div className="flex  min h-screen">
@@ -53,6 +58,7 @@ export default function AccountManagement() {
             headerTitle="Account Management"
             buttonIshow={true}
             firstButtonName="Add Account"
+            firstButtonFunction={handleNavigate}
             secondButtonName="Filter by"
             thirdButtonName="Export"
           />

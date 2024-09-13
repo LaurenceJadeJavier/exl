@@ -37,7 +37,7 @@ export default function CMSLayout({ children }: CMSLayoutProps) {
               <Link href={item.key}>
                 <h1
                   className={`block p-2 ${
-                    pathname === item.key
+                    pathname.startsWith(item.key)
                       ? "font-bold text-[#E30613]"
                       : "hover:text-gray-500"
                   }`}

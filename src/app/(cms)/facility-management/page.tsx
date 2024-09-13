@@ -2,12 +2,14 @@
 
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
+import { useRouter } from "next/navigation";
 interface tableProps {
   facilityName: string;
   address: string;
   dateCreated: string;
 }
 export default function FacilityManagement() {
+  const router = useRouter();
   const column: ColumnDef<tableProps>[] = [
     {
       accessorKey: "facilityName",
@@ -28,6 +30,9 @@ export default function FacilityManagement() {
       },
     },
   ];
+  const handleNavigate = () => {
+    router.push("/facility-management/add-facility");
+  };
   const data = [
     {
       facilityName: "Main Office",
@@ -68,6 +73,7 @@ export default function FacilityManagement() {
             headerTitle="Location Management"
             buttonIshow={true}
             firstButtonName="Add Location"
+            firstButtonFunction={handleNavigate}
             secondButtonName="Filter by"
             thirdButtonName="Export"
           />

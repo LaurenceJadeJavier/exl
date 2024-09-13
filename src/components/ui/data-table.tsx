@@ -106,18 +106,23 @@ export function DataTable<TData, TValue>({
               <div className="flex flex-row gap-2 px-4">
                 {buttonIshow && (
                   <>
-                    <Button className="bg-[#E30613] text-white rounded-lg px-4 py-2">
+                    <Button
+                      className="bg-[#E30613] text-white rounded-lg px-4 py-2"
+                      onClick={firstButtonFunction}
+                    >
                       {firstButtonName}
                     </Button>
                     <Button
                       className="border border-[#E30613] rounded-lg px-4 py-2"
                       variant="outline"
+                      onClick={secondButtonFunction}
                     >
                       {secondButtonName}
                     </Button>
                     <Button
                       className="border border-[#E30613] rounded-lg px-4 py-2"
                       variant="outline"
+                      onClick={thirdButtonFunction}
                     >
                       {thirdButtonName}
                     </Button>

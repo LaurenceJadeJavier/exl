@@ -53,7 +53,7 @@ export default function AccountManagement() {
             headerTitle="Account Management"
             buttonIshow={true}
             firstButtonName="Add Account"
-            secondButtonName="FilterBy"
+            secondButtonName="Filter by"
             thirdButtonName="Export"
           />
         </div>

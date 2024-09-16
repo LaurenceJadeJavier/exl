@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import QueryProvider from "@/utils/provider/queryProvider";
 import FontProvider from "@/utils/provider/fontProvider";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
   title: "EXL",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <NextTopLoader color="#E30613" />
         <QueryProvider>
           <FontProvider>{children}</FontProvider>
         </QueryProvider>

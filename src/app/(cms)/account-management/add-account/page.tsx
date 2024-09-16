@@ -102,41 +102,40 @@ export default function AddAccount() {
             />
             <div className="">
               {fields.map((field, index) => (
-                <div className=" flex flex-row  ">
-                  <div className="w-[100%]">
-                    <FormField
-                      control={form.control}
-                      key={field.id}
-                      name={`emails.${index}.value`}
-                      render={({ field }) => (
-                        <FormItem className="w-full">
-                          <FormLabel className={cn(index !== 0 && "sr-only")}>
-                            Email
-                          </FormLabel>
-                          <FormControl>
+                <div key={field.id} className="flex flex-row mt-2">
+                  <FormField
+                    control={form.control}
+                    name={`emails.${index}.value`}
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel className={cn(index !== 0 && "sr-only")}>
+                          Email
+                        </FormLabel>
+                        <FormControl>
+                          <div className="flex flex-row justify-center items-center">
                             <Input {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                  <div className="flex justify-center items-center my-2  ">
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="icon"
-                      className="m-auto"
-                      onClick={() => append({ value: "" })}
-                    >
-                      <Image
-                        src={addField}
-                        alt="addField"
-                        width={20}
-                        className="m-auto"
-                      />
-                    </Button>
-                  </div>
+                            <div className="flex justify-center items-center">
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="icon"
+                                className="m-auto"
+                                onClick={() => append({ value: "" })}
+                              >
+                                <Image
+                                  src={addField}
+                                  alt="addField"
+                                  width={20}
+                                  className="m-auto"
+                                />
+                              </Button>
+                            </div>
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
               ))}
             </div>
@@ -145,44 +144,48 @@ export default function AddAccount() {
               name="modules"
               render={() => (
                 <FormItem>
-                  <div className="mb-4">
-                    <FormLabel className="text-base">Access Modules</FormLabel>
+                  <div className="mt-4">
+                    <FormLabel className="text-xs">Access Modules</FormLabel>
                   </div>
-                  {items.map((item) => (
-                    <FormField
-                      key={item.id}
-                      control={form.control}
-                      name="modules"
-                      render={({ field }) => (
-                        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value?.includes(item.id)}
-                              onCheckedChange={(checked) => {
-                                // Update form value with the module ID
-                                return checked
-                                  ? field.onChange([...field.value, item.id])
-                                  : field.onChange(
-                                      field.value?.filter(
-                                        (value) => value !== item.id
-                                      )
-                                    );
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="text-sm font-normal">
-                            {item.label}
-                          </FormLabel>
-                        </FormItem>
-                      )}
-                    />
-                  ))}
+                  <div className="grid grid-cols-12">
+                    {items.map((item) => (
+                      <FormField
+                        key={item.id}
+                        control={form.control}
+                        name="modules"
+                        render={({ field }) => (
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0 col-span-6 ">
+                            <FormControl>
+                              <Checkbox
+                                className="font-bold"
+                                checked={field.value?.includes(item.id)}
+                                onCheckedChange={(checked) => {
+                                  // Update form value with the module ID
+                                  return checked
+                                    ? field.onChange([...field.value, item.id])
+                                    : field.onChange(
+                                        field.value?.filter(
+                                          (value) => value !== item.id
+                                        )
+                                      );
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="text-sm font-normal">
+                              {item.label}
+                            </FormLabel>
+                          </FormItem>
+                        )}
+                      />
+                    ))}
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <div className="mt-4">
-              <Button type="submit">Update profile</Button>
+            <div className="mt-4 flex items-end justify-end gap-2 ">
+              <Button variant={"outline"}>Cancel</Button>
+              <Button type="submit">Submit</Button>
             </div>
           </form>
         </Form>

@@ -12,7 +12,10 @@ const useAddAccountSchema = z.object({
   emails: z
     .array(
       z.object({
-        value: z.string().email({ message: "Please enter a valid Email." }),
+        value: z
+          .string()
+          .trim()
+          .email({ message: "Please enter a valid Email." }),
       })
     )
     .optional(),

@@ -6,7 +6,13 @@ import Image from "next/image";
 import { useState } from "react";
 import avail from "@assets/images/occupied.png";
 import occu from "@assets/images/avail2.png";
-import { FaCaretDown } from "react-icons/fa";
+import {
+  ResponsiveModal,
+  ResponsiveModalContent,
+  ResponsiveModalDescription,
+  ResponsiveModalHeader,
+} from "@/components/ui/responsive-modal";
+import { Scanner } from "@yudiel/react-qr-scanner";
 
 interface TableProps {
   deviceName: string;
@@ -17,6 +23,9 @@ interface TableProps {
 }
 
 export default function CheckInOutDevice() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [dataWeb, setDataWeb] = useState<string | null>(null); // State for scanned data
+  const [isScanning, setIsScanning] = useState(true); // State to toggle scanning
   const column: ColumnDef<TableProps>[] = [
     {
       accessorKey: "deviceName",
@@ -107,6 +116,18 @@ export default function CheckInOutDevice() {
       )
     );
   };
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+  const scannerStyles = {
+    container: {
+      width: "50%",
+      height: "80%",
+    },
+  };
   return (
     <>
       <div className="flex flex-row  min h-screen   ">
@@ -124,7 +145,10 @@ export default function CheckInOutDevice() {
             </div>
 
             <div className="flex space-x-2 ">
-              <Button className="bg-[#E30613] text-white rounded-lg px-4 py-2">
+              <Button
+                className="bg-[#E30613] text-white rounded-lg px-4 py-2"
+                onClick={handleOpenModal}
+              >
                 Scan Device
               </Button>
               <Button
@@ -186,6 +210,38 @@ export default function CheckInOutDevice() {
         </div>
       </div>
       <div></div>
+      <ResponsiveModal open={isOpen}>
+        <ResponsiveModalContent className="max-w-md p-6 mx-auto">
+          <ResponsiveModalHeader className="text-center">
+            <ResponsiveModalDescription>
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-full flex flex-col justify-center items-center gap-5 mt-10 ">
+                  <Scanner
+                    styles={scannerStyles}
+                    scanDelay={300}
+                    paused={!isScanning}
+                    onError={(err) => console.error("Scanner Error:", err)}
+                    onScan={(data: any) => {
+                      if (data) {
+                        setDataWeb(data);
+                        alert(`Scanned Data: ${JSON.stringify(data)}`);
+                      }
+                    }}
+                  />
+                  {/* <div>
+                    {dataWeb
+                      ? JSON.stringify(dataWeb, null, 2)
+                      : "No data scanned yet"}
+                  </div> */}
+                  <Button className="w-[50%]" onClick={handleCloseModal}>
+                    close camera
+                  </Button>
+                </div>
+              </div>
+            </ResponsiveModalDescription>
+          </ResponsiveModalHeader>
+        </ResponsiveModalContent>
+      </ResponsiveModal>
     </>
   );
 }

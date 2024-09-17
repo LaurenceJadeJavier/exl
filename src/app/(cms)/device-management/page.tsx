@@ -2,8 +2,10 @@
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
+import { useRouter } from "next/navigation";
 
 export default function DeviceManagement() {
+  const router = useRouter();
   const column: ColumnDef<any>[] = [
     {
       accessorKey: "name",
@@ -73,6 +75,9 @@ export default function DeviceManagement() {
       lockerNo: "05",
     },
   ];
+  const handleNavigate = () => {
+    router.push("/device-management/add-device");
+  };
   return (
     <>
       <div className="flex  min h-screen">
@@ -86,7 +91,8 @@ export default function DeviceManagement() {
             headerTitle="Device Management"
             buttonIshow={true}
             firstButtonName="Add device"
-            secondButtonName="FilterBy"
+            firstButtonFunction={handleNavigate}
+            secondButtonName="Filter by"
             thirdButtonName="Export"
           />
         </div>

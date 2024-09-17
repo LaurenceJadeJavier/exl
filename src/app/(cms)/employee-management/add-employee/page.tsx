@@ -169,14 +169,14 @@ export default function AddEmployee() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="border border-[#E30613] text-[#E30613] hover:bg-[#f7f7f7]"
+                  className="border border-[#E30613] text-[#E30613] hover:bg-[#f7f7f7] w-36"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
                   variant="default"
-                  className="bg-[#E30613] text-white hover:bg-[#c20510]"
+                  className="bg-[#E30613] text-white hover:bg-[#c20510] w-40"
                 >
                   Submit
                 </Button>

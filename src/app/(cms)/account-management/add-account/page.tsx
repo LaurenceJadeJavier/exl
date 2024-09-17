@@ -53,6 +53,22 @@ export default function AddAccount() {
     control: form.control,
   });
 
+  // const addEmail = () => {
+  //   if (
+  //     fields[fields.length - 1].value !== null &&
+  //     fields[fields.length - 1].value !== ""
+  //   ) {
+  //     append({ value: "" });
+  //   }
+  // };
+  const addEmail = () => {
+    const emailValues = form.getValues("emails") || [];
+
+    if (emailValues[emailValues.length - 1]?.value !== "") {
+      append({ value: "" });
+    }
+  };
+
   function onSubmit(data: ProfileFormValues) {
     console.log(data);
   }
@@ -79,12 +95,10 @@ export default function AddAccount() {
       label: "Location Management",
     },
   ] as const;
-
   return (
     <div className="flex items-center w-full px-20 py-16">
       <div className="border border-gray-300 w-full max-w-4xl m-auto rounded-3xl p-12 shadow-lg">
-        <h1 className="text-2xl font-bold mb-8">Add Facility</h1>
-
+        <h1 className="text-2xl font-bold mb-8">Add Account</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
             <FormField
@@ -112,7 +126,7 @@ export default function AddAccount() {
                           Email
                         </FormLabel>
                         <FormControl>
-                          <div className="flex flex-row justify-center items-center">
+                          <div className="flex flex-row justify-center items-center gap-2">
                             <Input {...field} />
                             <div className="flex justify-center items-center">
                               <Button
@@ -120,7 +134,7 @@ export default function AddAccount() {
                                 variant="ghost"
                                 size="icon"
                                 className="m-auto"
-                                onClick={() => append({ value: "" })}
+                                onClick={() => addEmail()}
                               >
                                 <Image
                                   src={addField}
@@ -184,8 +198,12 @@ export default function AddAccount() {
               )}
             />
             <div className="mt-4 flex items-end justify-end gap-2 ">
-              <Button variant={"outline"}>Cancel</Button>
-              <Button type="submit">Submit</Button>
+              <Button className="w-36" variant={"outline"}>
+                Cancel
+              </Button>
+              <Button className="w-40" type="submit">
+                Submit
+              </Button>
             </div>
           </form>
         </Form>

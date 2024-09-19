@@ -78,6 +78,7 @@ export default function DeviceManagement() {
   const handleNavigate = () => {
     router.push("/device-management/add-device");
   };
+
   return (
     <>
       <div className="flex  min h-screen">

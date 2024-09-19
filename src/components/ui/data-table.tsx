@@ -184,46 +184,60 @@ export function DataTable<TData, TValue>({
         <div className="mr-10">
           {displayPagination && (
             <div className="flex items-center space-x-2 justify-end mt-2">
+              {/* Current Page and Total Pages Display */}
               <div className="flex w-[100px] items-center justify-center text-xs font-medium">
                 Page {table.getState().pagination.pageIndex + 1} of{" "}
                 {table.getPageCount()}
               </div>
 
+              {/* Previous Button */}
               <Button
                 variant="outline"
                 className="h-6 w-6 p-0"
-                onClick={() => table.setPageIndex(0)}
-                disabled={!table.getCanPreviousPage() || loading}
-                size="icon"
-              >
-                <RxDoubleArrowLeft className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                className="h-6 w-6  p-0"
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage() || loading}
                 size="icon"
               >
                 <RxChevronLeft className="h-4 w-4" />
               </Button>
+
+              {/* Numbered Page Buttons */}
+              {Array.from({ length: Math.min(5, table.getPageCount()) }).map(
+                (_, index) => {
+                  const currentPageIndex =
+                    table.getState().pagination.pageIndex;
+                  const startPage = Math.max(0, currentPageIndex - 2);
+                  const pageIndex = startPage + index;
+
+                  if (pageIndex >= table.getPageCount()) return null;
+
+                  return (
+                    <Button
+                      key={pageIndex}
+                      variant="outline"
+                      className={`h-6 w-6 p-0 ${
+                        currentPageIndex === pageIndex
+                          ? "bg-red-500 text-white"
+                          : ""
+                      }`}
+                      onClick={() => table.setPageIndex(pageIndex)}
+                      disabled={loading}
+                    >
+                      {pageIndex + 1}
+                    </Button>
+                  );
+                }
+              )}
+
+              {/* Next Button */}
               <Button
                 variant="outline"
-                className="h-6 w-6  p-0"
+                className="h-6 w-6 p-0"
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage() || loading}
                 size="icon"
               >
                 <RxChevronRight className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="outline"
-                className="h-6 w-6  p-0"
-                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                disabled={!table.getCanNextPage() || loading}
-                size="icon"
-              >
-                <RxDoubleArrowRight className="h-4 w-4" />
               </Button>
             </div>
           )}

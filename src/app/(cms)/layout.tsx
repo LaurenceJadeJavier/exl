@@ -51,7 +51,9 @@ export default function CMSLayout({ children }: CMSLayoutProps) {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1  bg-gray-100 overflow-hidden">{children}</main>
+      <main className="flex-1 items-center  bg-gray-100 overflow-auto">
+        {children}
+      </main>
     </div>
   );
 }

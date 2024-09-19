@@ -31,8 +31,8 @@ export default function useAddDevice() {
   };
   return (
     <>
-      <div className="flex items-center w-full px-20 py-16 ">
-        <div className="border border-gray-300 w-full max-w-4xl m-auto rounded-3xl p-12 shadow-lg">
+      <div className="flex items-center w-full px-20 py-16   ">
+        <div className="border border-gray-300 w-full max-w-4xl m-auto rounded-3xl px-20 py-6 shadow-lg">
           <h1 className="text-2xl font-bold mb-2">Add Facility</h1>
           <h1 className="text-sm font-bold mb-2">Employee Information</h1>
           <Form {...form}>
@@ -73,8 +73,8 @@ export default function useAddDevice() {
                   </FormItem>
                 )}
               />
-              <div className="mt-2">
-                <h1 className="text-sm font-bold mb-3">Device Information</h1>
+              <div className="mt-3">
+                <h1 className="text-sm font-bold mb-2">Device Information</h1>
                 <FormField
                   control={form.control}
                   name="date"
